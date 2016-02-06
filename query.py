@@ -80,12 +80,22 @@ def get_brands_summary():
 
 
 # Part 2.5: Advanced and Optional
-def search_brands_by_name(mystr):
-    pass
 
+# Design a function in python that takes in any string as parameter, 
+# and returns a list of objects that are brands whose name contains 
+# or is equal to the input string.
+def search_brands_by_name(mystr):
+    brands = b.filter(Brand.name.like('%mystr%')).all()
+    return brands
+
+
+# Design a function that takes in a start year and end year (two integers), 
+# and returns a list of objects that are models with years that fall between 
+# the start year and end year.
 
 def get_models_between(start_year, end_year):
-    pass
+    models = m.filter(Model.year > start_year, Model.year < end_year).all()
+    return models
 
 # -------------------------------------------------------------------
 
@@ -93,5 +103,15 @@ def get_models_between(start_year, end_year):
 
 # 1. What is the returned value and datatype of ``Brand.query.filter_by(name='Ford')``?
 
+# The returned value is a query, not the actual brand object. Specifically, 
+# it returns "<flask_sqlalchemy.BaseQuery object at 0x10a606290>"
+
+
 # 2. In your own words, what is an association table, and what *type* of relationship
 # does an association table manage?
+
+# An association table exists just to connect other tables. It contains keys 
+# from other tables, but it contains no unique, meaningful information
+# in its own right. It manages relationships between other tables.
+
+
